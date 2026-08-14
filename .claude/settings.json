@@ -1,0 +1,11 @@
+{
+    "permissions": {
+        "deny": [
+            "Read(./.env)"
+        ],
+        "allow": [
+            "Bash(npm test)",
+            "Bash(npx vitest run *)"
+        ]
+    }
+}
