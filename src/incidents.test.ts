@@ -4,6 +4,7 @@ import {
   deleteIncident,
   getHighSeverityIncidents,
   getIncident,
+  getOpenIncidents,
   listIncidents,
   setIncidentStatus,
 } from "./incidents.js";
@@ -62,5 +63,16 @@ describe("incidents", () => {
   it("excludes non-HIGH severity incidents", () => {
     const highSeverity = getHighSeverityIncidents();
     expect(highSeverity.some((incident) => incident.title === "Slow dashboard load")).toBe(false);
+  });
+
+  it("returns only OPEN incidents", () => {
+    const open = getOpenIncidents();
+    expect(open.length).toBeGreaterThanOrEqual(1);
+    expect(open.every((incident) => incident.status === "OPEN")).toBe(true);
+  });
+
+  it("excludes non-OPEN incidents", () => {
+    const open = getOpenIncidents();
+    expect(open.some((incident) => incident.title === "Slow dashboard load")).toBe(false);
   });
 });

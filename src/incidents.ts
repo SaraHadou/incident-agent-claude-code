@@ -28,6 +28,10 @@ export function getHighSeverityIncidents(): Incident[] {
   return incidents.filter((incident) => incident.severity === "HIGH");
 }
 
+export function getOpenIncidents(): Incident[] {
+  return incidents.filter((incident) => incident.status === "OPEN");
+}
+
 export function createIncident(title: string, severity: Severity): Incident {
   const incident: Incident = { id: nextId++, title, severity, status: "OPEN" };
   incidents.push(incident);
